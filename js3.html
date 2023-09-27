@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Multiplication and Division Calculator</title>
+    <script>
+        function calculateMultiplication() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+            
+            var multiplicationResult = num1 * num2;
+            document.getElementById("result").innerHTML = "Multiplication: " + multiplicationResult;
+        }
+
+        function calculateDivision() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+            
+            if (num2 === 0) {
+                alert("Division by zero is not allowed.");
+                return;
+            }
+            
+            var divisionResult = num1 / num2;
+            document.getElementById("result").innerHTML = "Division: " + divisionResult;
+        }
+    </script>
+</head>
+<body>
+    
+    <label for="num1">Enter the first number: </label>
+    <input type="text" id="num1"><br>
+    
+    <label for="num2">Enter the second number: </label>
+    <input type="text" id="num2"><br>
+    
+    <button onclick="calculateMultiplication()">Multiply</button>
+    <button onclick="calculateDivision()">Divide</button><br>
+    
+    <p id="result"></p>
+</body>
+</html>

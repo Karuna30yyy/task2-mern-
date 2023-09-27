@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: antiquewhite;
+        }
+
+        table {
+            text-align: left;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #register{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption><h1>Registration Form</h1></caption>
+        <form novalidate id="registrationForm" onsubmit="validateForm()" method="post">
+            <tr>
+                <td><label for="firstName">First Name:</label></td>
+                <td><input type="text" id="firstName" name="firstName" required></td>
+                <td><span id="firstNameError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name:</label></td>
+                <td><input type="text" id="lastName" name="lastName" required></td>
+                <td><span id="lastNameError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+                <td><span id="emailError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" required onkeyup="checkPasswordStrength()"></td>
+                <td><span id="passwordError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="rePassword">Re-enter Password:</label></td>
+                <td><input type="password" id="rePassword" name="rePassword" required></td>
+                <td><span id="rePasswordError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label>Gender:</label></td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="male"> Male
+                    <input type="radio" id="female" name="gender" value="female"> Female
+                    <input type="radio" id="other" name="gender" value="other"> Other
+                </td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="number" id="age" name="age" required></td>
+                <td><span id="ageError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="phone">Phone Number:</label></td>
+                <td><input type="tel" id="phone" name="phone" required></td>
+                <td><span id="phoneError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><textarea id="address" name="address" required></textarea></td>
+                <td><span id="addressError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td><input type="text" id="state" name="state" required></td>
+                <td><span id="stateError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="country">Country:</label></td>
+                <td>
+                    <select id="country" name="country" required>
+                        <option value="Choose your country">Choose your country</option>
+                        <option value="India">India</option>
+                        <option value="USA">USA</option>
+                        <option value="UK">UK</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Languages Known:</label></td>
+                <td style="display: flex;" >
+                    <input type="checkbox" id="english" name="languages" value="English"> English<br>
+                    <input type="checkbox" id="spanish" name="languages" value="Spanish"> Spanish<br>
+                    <input type="checkbox" id="french" name="languages" value="French"> French
+                </td>
+            </tr>
+            <tr><td><input type="checkbox">Hereby I declare all the given details are true.</td></tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" id="register" value="Register"></td>
+            </tr>
+            
+        </form>
+    </table>
+
+    <script>
+        function validateForm() {
+            // prevent form submission
+            event.preventDefault();
+            // check for errors with flag
+            var flag = false;
+            if (document.getElementById("firstName").value == "" || document.getElementById("firstName").value.length < 3) {
+                document.getElementById("firstNameError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                console.log("here");
+                document.getElementById("firstNameError").innerHTML = "";
+            }
+            if (document.getElementById("lastName").value == "" || document.getElementById("lastName").value.length < 3) {
+                document.getElementById("lastNameError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("lastNameError").innerHTML = "";
+            }
+            if (document.getElementById("email").value == "" || document.getElementById("email").value.length < 3 || document.getElementById("email").value.indexOf("@") == -1) {
+                document.getElementById("emailError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+            if (document.getElementById("password").value == "" || document.getElementById("password").value.length < 3) {
+                document.getElementById("passwordError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+            // check if age is empty
+            if (document.getElementById("age").value == "")  {
+                document.getElementById("ageError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("ageError").innerHTML = "";
+            }
+            if (document.getElementById("phone").value == "" || document.getElementById("phone").value.length != 10) {
+                document.getElementById("phoneError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("phoneError").innerHTML = "";
+            }
+            if (document.getElementById("address").value == "" || document.getElementById("address").value.length < 3) {
+                document.getElementById("addressError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("addressError").innerHTML = "";
+            }
+            if (document.getElementById("state").value == "" || document.getElementById("state").value.length < 3) {
+                document.getElementById("stateError").innerHTML = "POOR";
+                flag = true;
+            }
+            else {
+                document.getElementById("stateError").innerHTML = "";
+            }
+            if (flag) {
+                // prevent form submission
+                // event.preventDefault();
+            }
+            else {
+                document.getElementById("registrationForm").submit();
+            }
+        }
+    </script>
+</body>
+</html>

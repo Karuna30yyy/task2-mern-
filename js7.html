@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Animation</title>
+    <style>
+    
+        #train {
+            width: 100px;
+            height: 50px;
+            background: url('https://thumbs.dreamstime.com/b/handsome-machinist-cartoon-uo-train-smile-waving-pict-handsome-machinist-cartoon-uo-train-smile-waving-102189491.jpg') no-repeat center center;
+            background-size: cover;
+            position: absolute;
+            top: 100px;
+            left: 0;
+            transition: left 1s linear;
+        }
+    </style>
+</head>
+<body>
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+    <H2> Click the following button to handle animation</H2>
+    <div id="train"></div>
+
+    <script>
+        
+        const train = document.getElementById("train");
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+        let isMoving = false;
+        let animationInterval;
+
+        startButton.addEventListener("click", () => {
+            if (!isMoving) {
+                isMoving = true;
+                animationInterval = setInterval(moveTrain, 2000);
+            }
+        });
+
+        stopButton.addEventListener("click", () => {
+            if (isMoving) {
+                isMoving = false;
+                clearInterval(animationInterval);
+            }
+        });
+
+        function moveTrain() {
+            const currentLeft = parseInt(getComputedStyle(train).left, 10);
+            const trainWidth = parseInt(getComputedStyle(train).width, 10);
+            const windowWidth = window.innerWidth;
+
+            if (currentLeft + trainWidth <= windowWidth) {
+                train.style.left = (currentLeft + 50) + "px";
+            } else {
+                train.style.left = "0";
+            }
+        }
+    </script>
+</body>
+</html>

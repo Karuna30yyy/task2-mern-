@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>JS TASK 5</title>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var website = document.getElementById("website").value;
+            var message = document.getElementById("message").value;
+
+            var isValid = true;
+
+            if (name === "") {
+                document.getElementById("nameError").innerHTML = "Name must be filled out";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (email === "" || !email.match(emailPattern)) {
+                document.getElementById("emailError").innerHTML = "Invalid email address";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+
+            var websitePattern = /^(https?:\/\/)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})(\/\S*)?$/;
+            if (website === "" || !website.match(websitePattern)) {
+                document.getElementById("websiteError").innerHTML = "Invalid website URL";
+                isValid = false;
+            } else {
+                document.getElementById("websiteError").innerHTML = "";
+            }
+
+            if (message === "") {
+                document.getElementById("messageError").innerHTML = "Message must be filled out";
+                isValid = false;
+            } else {
+                document.getElementById("messageError").innerHTML = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <span class="error" id="nameError"></span><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email">
+        <span class="error" id="emailError"></span><br><br>
+
+        <label for="website">Website:</label>
+        <input type="text" id="website">
+        <span class="error" id="websiteError"></span><br><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message"></textarea>
+        <span class="error" id="messageError"></span><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
